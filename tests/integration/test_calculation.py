@@ -117,16 +117,24 @@ def test_calculation_factory_division():
     assert isinstance(calc, Division), "Factory did not return a Division instance."
     assert calc.get_result() == 10, "Incorrect division result."
 
+def test_calculation_factory_modulus():
+    inputs = [10, 3]
+    calc = Calculation.create(
+        calculation_type='modulus',
+        user_id=dummy_user_id(),
+        inputs=inputs,
+    )
+    assert isinstance(calc, Modulus)
+    assert calc.get_result() == 10 % 3
+
 def test_calculation_factory_invalid_type():
-    """
-    Test that Calculation.create raises a ValueError for an unsupported calculation type.
-    """
     with pytest.raises(ValueError, match="Unsupported calculation type"):
         Calculation.create(
-            calculation_type='modulus',  # unsupported type
+            calculation_type='power',  # truly unsupported
             user_id=dummy_user_id(),
-            inputs=[10, 3],
+            inputs=[2, 3],
         )
+        
 def test_modulus_get_result():
     """
     Test that Modulus.get_result returns the correct remainder.
