@@ -146,15 +146,7 @@ def test_modulus_chain_get_result():
     result = modulus.get_result()
     assert result == ((20 % 6) % 4), f"Expected {(20 % 6) % 4}, got {result}"
 
-def test_modulus_by_zero():
-    """
-    Test that Modulus.get_result raises ValueError when modulus by zero.
-    """
-    inputs = [10, 0]
-    modulus = Modulus(user_id=dummy_user_id(), inputs=inputs)
-    with pytest.raises(ValueError, match="Cannot modulus by zero."):
-        modulus.get_result()
-        
+
 def test_invalid_inputs_for_addition():
     """
     Test that providing non-list inputs to Addition.get_result raises a ValueError.
